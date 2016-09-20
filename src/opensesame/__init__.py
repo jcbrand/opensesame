@@ -3,18 +3,12 @@ from optparse import OptionParser
 import clipboard
 import getpass
 import gnupg
-import logging
 import re
-
-log = logging.getLogger(__name__)
 
 
 def parse_options():
     usage = "\n%prog [options] IDENTIFIER"
     parser = OptionParser(usage)
-    parser.add_option("-v", "--verbose",
-                      action="store_true", dest="verbose", default=False,
-                      help="Verbose mode")
     parser.add_option("-f", "--file",
                       dest="file", default='.pw.txt.gpg',
                       help=u"Path to the secrets file")
@@ -97,8 +91,5 @@ class OpenSesame(object):
 
 def main():
     options, args = parse_options()
-    logging.basicConfig(
-        level=options.verbose and logging.DEBUG or logging.INFO,
-        format="%(levelname)s: %(message)s")
     opensesame = OpenSesame(options, args)
     opensesame.run()
