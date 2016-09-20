@@ -40,6 +40,8 @@ class OpenSesame(object):
 
     def run(self):
         self.match = self.get_match()
+        if self.match is None:
+            return
         if self.options.username:
             username = self.get_username()
             clipboard.copy(username)
@@ -69,12 +71,17 @@ class OpenSesame(object):
         pw = getpass.getpass("Please enter your passphrase: ")
         output = gpg.decrypt_file(open(self.options.file, 'rb'), passphrase=pw)
         match = re.findall(
-            ".*{}.*".format(self.args[0]), output.data, re.MULTILINE
+            "(?im).*{}.*".format(self.args[0]), output.data,
         )
         if len(match) > 1:
-            return "Got more than one hit, please refine your identifier"
+            print "Got more than one hit, please refine your identifier.\n"
+            print "Here are the hits: "
+            for m in match:
+                print self.get_identifier(m)
+            return None
         elif len(match) == 0:
-            return "No match found"
+            print "No match found"
+            return None
         return match[0]
 
     def get_password(self):
@@ -86,8 +93,11 @@ class OpenSesame(object):
     def get_address(self):
         return self.match.split(',')[1]
 
-    def get_identifier(self):
-        return self.match.split(',')[1]
+    def get_identifier(self, match=None):
+        if match is not None:
+            return match.split(',')[0]
+        else:
+            return self.match.split(',')[0]
 
 def main():
     options, args = parse_options()
