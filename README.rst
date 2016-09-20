@@ -28,5 +28,5 @@ Usage
 TODO
 ----
 
-* Add ability to generate new file
-* Add ability to add new passwords
+* Ability to generate new file
+* Ability to add new passwords (auto-generate with pwgen)

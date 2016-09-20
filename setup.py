@@ -26,6 +26,7 @@ setup(
         'python-gnupg',
         'python-awk',
         'clipboard',
+        'pwgen',
         'ipdb'
     ],
     entry_points="""
