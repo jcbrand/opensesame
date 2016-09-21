@@ -7,6 +7,11 @@ It uses GPG to encrypt and decrypt your passwords.
 
 Achtung! This is still a work in progress.
 
+Usage
+-----
+
+    ./bin/opensesame -f ~/.pw.txt.gpg --username --password wikipedia.org
+
 Development
 -----------
 
@@ -19,11 +24,6 @@ Development
     ./bin/pip install zc.buildout
 
     ./bin/buildout
-
-Usage
------
-
-    ./bin/opensesame -f ~/.pw.txt.gpg --username --password wikipedia.org
 
 TODO
 ----

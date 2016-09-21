@@ -15,8 +15,13 @@ def parse_options():
     parser.add_option("-p", "--password", action="store_true", 
                       dest="password", default=False,
                       help=u"Return the password for the given identifier")
-    parser.add_option("-a", "--address", action="store_true", 
-                      dest="address", default=False,
+    """
+    parser.add_option("-a", "--add", action="store_true", 
+                      dest="add", default=False,
+                      help=u"Add a new password to the store")
+    """
+    parser.add_option("-l", "--locator", action="store_true", 
+                      dest="locator", default=False,
                       help=u"Return the password for the given identifier")
     parser.add_option("-i", "--identifier", action="store_true", 
                       dest="identifier", default=False,
@@ -59,11 +64,11 @@ class OpenSesame(object):
             print "The identifier is {}, and has been copied to your " \
                   "clipboard".format(identifier)
             raw_input("Press enter to continue")
-        if self.options.address:
-            address = self.get_address()
+        if self.options.locator:
+            locator = self.get_locator()
             clipboard.copy(identifier)
-            print "The address is {}, and has been copied to your " \
-                  "clipboard".format(address)
+            print "The locator is {}, and has been copied to your " \
+                  "clipboard".format(locator)
             raw_input("Press enter to continue")
 
     def get_match(self):
@@ -85,19 +90,19 @@ class OpenSesame(object):
         return match[0]
 
     def get_password(self):
-        return self.match.split(',')[3]
+        return self.match.split('\t')[3]
 
     def get_username(self):
-        return self.match.split(',')[2]
+        return self.match.split('\t')[2]
 
-    def get_address(self):
-        return self.match.split(',')[1]
+    def get_locator(self):
+        return self.match.split('\t')[1]
 
     def get_identifier(self, match=None):
         if match is not None:
-            return match.split(',')[0]
+            return match.split('\t')[0]
         else:
-            return self.match.split(',')[0]
+            return self.match.split('\t')[0]
 
 def main():
     options, args = parse_options()
