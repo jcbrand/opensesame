@@ -82,7 +82,10 @@ class OpenSesame(object):
             print "Got more than one hit, please refine your identifier.\n"
             print "Here are the hits: "
             for m in match:
-                print self.get_identifier(m)
+                print "Identifier: {}, Username: {}".format(
+                    self.get_identifier(m),
+                    self.get_username(m)
+                );
             return None
         elif len(match) == 0:
             print "No match found"
