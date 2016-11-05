@@ -88,6 +88,7 @@ class OpenSesame(object):
                 );
             return None
         elif len(match) == 0:
+            print output.status
             print "No match found"
             return None
         return match[0]
