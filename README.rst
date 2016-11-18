@@ -29,4 +29,4 @@ TODO
 ----
 
 * Ability to generate new file
-* Ability to add new passwords (auto-generate with pwgen)
+* Ability to generate/add new passwords (auto-generate with pwgen)

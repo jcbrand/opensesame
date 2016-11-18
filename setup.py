@@ -10,7 +10,9 @@ setup(
     long_description=open("README.rst").read() + "\n" +
                      open(os.path.join("CHANGES.rst")).read(),
     classifiers=[
+        "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python",
+        "Programming Language :: Python :: 2.7",
     ],
     keywords='',
     author='JC Brand',
@@ -23,6 +25,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'setuptools',
+        'argparse',
         'python-gnupg',
         'python-awk',
         'clipboard',
